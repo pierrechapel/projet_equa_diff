@@ -29,4 +29,13 @@ $$
 Comme $||x - \bar x|| \ge c > 0$ , alors $k||\nabla H(x(t))||^2$ est minorée par une constante $c'>0$, ce qui assure bien que $H(x(t))$ converge exponentiellement vers $H_0$ lorsque $t \rightarrow +\infty$ et $||x - \bar x|| \ge c >0$.  
 
   
-10) Pour assurer la stabilité de $H$, il suffit donc d'implémenter les équations modifiées en prenant $u(x) = k \nabla H(x)$. Le rôle de $k$ est d'amplifier l'erreur entre la valeur de $H$ au point précédent et la valeur initiale $H_0$ pour que la correction à l'étape suivante soit plus drastique. Si k est pris trop grand, on risque de perdre la stabilité de $H$ qui peut se mettre à osciller entre des valeurs très positives et très négatives. En revanche, si il est choisi trop petit, les corrections seront trop lentes pour être intéressantes.
+10) Pour assurer la stabilité de $H$, il suffit donc d'implémenter les équations modifiées en prenant $u(x) = k \nabla H(x)$. Le rôle de $k$ est d'amplifier l'erreur entre la valeur de $H$ au point précédent et la valeur initiale $H_0$ pour que la correction à l'étape suivante soit plus drastique. Si k est pris trop grand, on risque de perdre la stabilité de $H$ qui peut se mettre à osciller entre des valeurs très positives et très négatives. En revanche, si il est choisi trop petit, les corrections seront trop lentes pour être intéressantes.  
+On peut vérifier ce raisonnement en calculant $H(x^{j+1})-H(x_0)$ en fonction de $H(x^{j})-H(x_0)$ et de k au premier ordre:
+$$
+H(x^{j+1})-H(x_0) = [ H(x^{j})-H(x_0) ] - k||\nabla H(x^j)||^2 (H(x^{j})-H(x_0)) dt + O(dt^2)
+$$
+donc
+$$
+H(x^{j+1})-H(x_0) = [ H(x^{j})-H(x_0) ][1 - k||\nabla H(x^j)||^2 (H(x^{j})-H(x_0)) dt ] + O(dt^2)
+$$
+On voit bien que si $k$ est trop grand, les corrections seront trop grandes, et $H(x(t))$ oscillera avec des grandes amplitudes autour de $H_0$. 
